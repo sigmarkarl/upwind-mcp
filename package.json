@@ -1,0 +1,26 @@
+{
+  "name": "upwind-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Upwind API - manage threats, vulnerabilities, and security posture",
+  "type": "module",
+  "main": "dist/start.cjs",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/start.cjs",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": ["mcp", "upwind", "security", "threats", "vulnerabilities", "api"],
+  "author": "Upwind Security",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/axios": "^0.14.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}
