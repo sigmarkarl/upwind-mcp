@@ -52,6 +52,27 @@ npm run build
 npm start
 ```
 
+## Add to MCP Configuration
+
+To add the Upwind MCP server to your MCP configuration, include the following in your `mcp-config.json`:
+
+```json
+{
+  "mcpServers": {
+    "upwind": {
+      "command": "node",
+      "args": ["path/to/upwind-mcp/dist/index.js"],
+      "env": {
+        "UPWIND_CLIENT_ID": "your_client_id",
+        "UPWIND_CLIENT_SECRET": "your_client_secret",
+        "UPWIND_BASE_URL": "https://api.upwind.io",
+        "UPWIND_AUTH_URL": "https://auth.upwind.io"
+      }
+    }
+  }
+}
+```
+
 ## Available Tools
 
 ### Threat Detection Tools
