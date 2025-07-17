@@ -65,11 +65,6 @@ npm run build
    })();
    ```
 
-6. Start the server:
-```bash
-npm start
-```
-
 ## Add to MCP Configuration
 
 To add the Upwind MCP server to your MCP configuration, include the following in your `mcp-config.json`:
@@ -79,7 +74,7 @@ To add the Upwind MCP server to your MCP configuration, include the following in
   "mcpServers": {
     "upwind": {
       "command": "node",
-      "args": ["path/to/upwind-mcp/dist/index.js"],
+      "args": ["path/to/upwind-mcp/dist/start.cjs"],
       "env": {
         "UPWIND_CLIENT_ID": "your_client_id",
         "UPWIND_CLIENT_SECRET": "your_client_secret",
