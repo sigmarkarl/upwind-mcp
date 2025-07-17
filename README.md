@@ -47,7 +47,25 @@ UPWIND_AUTH_URL=https://auth.upwind.io
 npm run build
 ```
 
-5. Start the server:
+5. Create the CommonJS wrapper file:
+
+   Create `dist/start.cjs`:
+   ```javascript
+   #!/usr/bin/env node
+   
+   // CommonJS wrapper to properly load ES module
+   (async () => {
+     try {
+       const module = await import('./index.js');
+       // The module should start automatically when imported
+     } catch (error) {
+       console.error('Failed to start MCP server:', error);
+       process.exit(1);
+     }
+   })();
+   ```
+
+6. Start the server:
 ```bash
 npm start
 ```
