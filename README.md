@@ -65,7 +65,50 @@ npm run build
    })();
    ```
 
+6. Start the server:
+
+**For stdio mode (local MCP):**
+```bash
+npm start
+```
+
+**For HTTP mode (remote connector):**
+```bash
+npm run start:http
+```
+
+The HTTP server will run on port 3000 by default, or you can set the `PORT` environment variable.
+
+## Use Cases
+
+### When to Use HTTP Mode (Remote Connector)
+
+**Best for:**
+- **Production deployments** where you want to run the MCP server as a service
+- **Multiple clients** connecting to the same Upwind instance
+- **Cloud deployments** where the server runs on a different machine than the client
+- **Web applications** that need to integrate with Upwind API through MCP
+- **Shared team environments** where multiple developers need access
+- **Containerized environments** (Docker, Kubernetes)
+- **CI/CD pipelines** that need persistent connections to Upwind
+
+**Example scenario:** Your team runs the Upwind MCP server on a central server at `https://upwind-mcp.company.com`, and multiple developers can connect their Claude Desktop instances to it using the URL configuration.
+
+### When to Use Stdio Mode (Local MCP)
+
+**Best for:**
+- **Local development** and testing
+- **Single-user environments** where only one client needs access
+- **Direct command-line usage** with MCP-compatible tools
+- **Embedded scenarios** where the server runs as part of another application
+- **Security-sensitive environments** where you want to avoid network exposure
+- **Simplified deployment** without HTTP server complexity
+
+**Example scenario:** A developer working locally wants to query Upwind threats and vulnerabilities directly from their Claude Desktop without setting up a web server.
+
 ## Add to MCP Configuration
+
+### Local MCP Server (stdio mode)
 
 To add the Upwind MCP server to your MCP configuration, include the following in your `mcp-config.json`:
 
@@ -85,6 +128,30 @@ To add the Upwind MCP server to your MCP configuration, include the following in
   }
 }
 ```
+
+### Remote MCP Connector (HTTP mode)
+
+For Claude Desktop, you can use the remote connector by adding this to your configuration:
+
+```json
+{
+  "mcpServers": {
+    "upwind": {
+      "url": "http://localhost:3000/sse"
+    }
+  }
+}
+```
+
+Make sure to start the HTTP server first:
+```bash
+npm run start:http
+```
+
+The HTTP server includes:
+- **SSE endpoint**: `http://localhost:3000/sse` - For MCP connection
+- **Health check**: `http://localhost:3000/health` - For monitoring
+- **CORS enabled** for web clients
 
 ## Available Tools
 

@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/start.cjs",
-    "dev": "ts-node src/index.ts"
+    "start:http": "node dist/server.js",
+    "dev": "ts-node src/index.ts",
+    "dev:http": "ts-node src/server.ts"
   },
   "keywords": ["mcp", "upwind", "security", "threats", "vulnerabilities", "api"],
   "author": "Upwind Security",
